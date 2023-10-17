@@ -1,0 +1,37 @@
+body {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    display: block;
+}
+
+html {
+    height: -webkit-fill-available;
+}
+
+#form-signin {
+    width: 100%;
+    max-width: 430px;
+    padding: 35px;
+    margin: auto;
+}
+
+#fullpage {
+    display: flex;
+    flex-wrap: nowrap;
+    height: 100vh;
+    height: -webkit-fill-available;
+    max-height: 100vh;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.divider {
+    flex-shrink: 0;
+    height: 100vh;
+}
+
+.scrollarea {
+    overflow-y: auto;
+}
+  
+  
