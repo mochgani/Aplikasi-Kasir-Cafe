@@ -17,6 +17,13 @@
                     window.location.href='master-role.php';
 				</script>
 			";
+		} else {
+			echo "
+				<script>
+					alert('Data Role Gagal di Simpan');
+                    window.location.href='master-role.php';
+				</script>
+			";
 		}
 	} else if (isset($_POST['ubah'])) {
 		

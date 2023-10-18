@@ -21,6 +21,13 @@
                     window.location.href='master-menu.php';
 				</script>
 			";
+		} else {
+			echo "
+				<script>
+					alert('Data Menu Gagal di Simpan');
+                    window.location.href='master-menu.php';
+				</script>
+			";
 		}
 	} else if (isset($_POST['ubah'])) {
 		

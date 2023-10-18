@@ -54,6 +54,12 @@ function active($currect_page){
         </a>
     </li>
     <li>
+        <a href="master-pelanggan.php" class="nav-link text-white <?php active('master-pelanggan,tambah-pelanggan,ubah-pelanggan'); ?>">
+        <i class="bi-person-heart me-2"></i> 
+        Pelanggan
+        </a>
+    </li>
+    <li>
         <a href="master-kategori.php" class="nav-link text-white <?php active('master-kategori,tambah-kategori,ubah-kategori'); ?>">
         <i class="bi-collection-fill me-2"></i> 
         Kategori Menu

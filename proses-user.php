@@ -21,6 +21,13 @@
                     window.location.href='master-user.php';
 				</script>
 			";
+		} else {
+			echo "
+				<script>
+					alert('Data User Gagal di Simpan');
+                    window.location.href='master-user.php';
+				</script>
+			";
 		}
 	} else if (isset($_POST['ubah'])) {
 		

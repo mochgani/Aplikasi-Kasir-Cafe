@@ -17,6 +17,13 @@
                     window.location.href='master-kategori.php';
 				</script>
 			";
+		} else {
+			echo "
+				<script>
+					alert('Data kategori Gagal di Simpan');
+                    window.location.href='master-kategori.php';
+				</script>
+			";
 		}
 	} else if (isset($_POST['ubah'])) {
 		

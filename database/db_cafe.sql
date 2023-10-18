@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 17, 2023 at 11:16 AM
+-- Generation Time: Oct 18, 2023 at 03:25 AM
 -- Server version: 5.7.34
 -- PHP Version: 5.6.40
 
@@ -67,6 +67,32 @@ INSERT INTO `menu` (`id_menu`, `nama_menu`, `harga_menu`, `id_kategori`, `foto_m
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `pelanggan`
+--
+
+CREATE TABLE `pelanggan` (
+  `id_pelanggan` int(11) NOT NULL,
+  `nama_pelanggan` varchar(30) NOT NULL,
+  `alamat` text NOT NULL,
+  `no_telepon` varchar(13) NOT NULL,
+  `jenis_kelamin` enum('Laki-laki','Perempuan') NOT NULL,
+  `tempat_lahir` varchar(20) NOT NULL,
+  `tanggal_lahir` date NOT NULL,
+  `jenis_pelanggan` enum('Gold','Silver','Bronze') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pelanggan`
+--
+
+INSERT INTO `pelanggan` (`id_pelanggan`, `nama_pelanggan`, `alamat`, `no_telepon`, `jenis_kelamin`, `tempat_lahir`, `tanggal_lahir`, `jenis_pelanggan`) VALUES
+(1, 'Raihan Wahyu', 'Taman', '08967615797', 'Laki-laki', 'Bandung', '2003-01-04', 'Silver'),
+(2, 'Dwi Insyani', 'Tegal Laja', '085220212524', 'Perempuan', 'Bandung', '2002-10-28', 'Gold'),
+(3, 'Udin', 'Jl. Kamarung', '082121282920', 'Laki-laki', 'Cimahi', '2000-09-17', 'Bronze');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `role`
 --
 
@@ -126,6 +152,12 @@ ALTER TABLE `menu`
   ADD PRIMARY KEY (`id_menu`);
 
 --
+-- Indexes for table `pelanggan`
+--
+ALTER TABLE `pelanggan`
+  ADD PRIMARY KEY (`id_pelanggan`);
+
+--
 -- Indexes for table `role`
 --
 ALTER TABLE `role`
@@ -152,6 +184,12 @@ ALTER TABLE `kategori`
 --
 ALTER TABLE `menu`
   MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `pelanggan`
+--
+ALTER TABLE `pelanggan`
+  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `role`
