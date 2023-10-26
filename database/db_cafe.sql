@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 26, 2023 at 07:01 AM
+-- Generation Time: Oct 26, 2023 at 10:15 AM
 -- Server version: 5.7.34
 -- PHP Version: 5.6.40
 
@@ -31,7 +31,7 @@ CREATE TABLE `detail_order` (
   `id_order` int(11) NOT NULL,
   `id_menu` int(11) NOT NULL,
   `jumlah` int(11) NOT NULL,
-  `status_detail_order` varchar(20) NOT NULL
+  `status_detail_order` enum('Selesai','Belum Selesai') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -40,10 +40,13 @@ CREATE TABLE `detail_order` (
 
 INSERT INTO `detail_order` (`id_detail_order`, `id_order`, `id_menu`, `jumlah`, `status_detail_order`) VALUES
 (4, 2, 1, 3, 'Selesai'),
-(5, 2, 2, 1, 'Belum Selesai'),
-(6, 2, 4, 5, 'Belum Selesai'),
+(5, 2, 2, 1, 'Selesai'),
+(6, 2, 4, 5, 'Selesai'),
 (7, 2, 4, 1, 'Selesai'),
-(10, 2, 4, 5, 'Belum Selesai');
+(10, 2, 4, 5, 'Selesai'),
+(11, 2, 2, 2, 'Selesai'),
+(12, 2, 2, 2, 'Selesai'),
+(13, 2, 4, 5, 'Belum Selesai');
 
 -- --------------------------------------------------------
 
@@ -117,7 +120,7 @@ CREATE TABLE `order` (
   `id_user` int(11) NOT NULL,
   `id_pelanggan` int(11) NOT NULL,
   `total` int(11) NOT NULL,
-  `status_order` varchar(20) NOT NULL
+  `status_order` enum('Selesai','Menunggu Pembayaran','Belum Selesai') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -125,7 +128,7 @@ CREATE TABLE `order` (
 --
 
 INSERT INTO `order` (`id_order`, `no_meja`, `tanggal`, `id_user`, `id_pelanggan`, `total`, `status_order`) VALUES
-(2, '7', '2023-10-26 10:33:23', 3, 3, 132000, 'Belum Selesai');
+(2, '7', '2023-10-26 10:33:23', 3, 3, 207000, 'Belum Selesai');
 
 -- --------------------------------------------------------
 
@@ -279,7 +282,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `detail_order`
 --
 ALTER TABLE `detail_order`
-  MODIFY `id_detail_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_detail_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `detail_order_temp`

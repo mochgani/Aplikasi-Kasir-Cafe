@@ -62,6 +62,19 @@
         $query = mysqli_query($conn, $sql);
 
         if ($query){
+            $sql = "SELECT * FROM `detail_order` WHERE id_order='$id_order_get' and status_detail_order='Belum Selesai'";
+            $detail = mysqli_query($conn, $sql);
+
+            $cek = mysqli_num_rows($detail);
+
+            if($cek>0){
+                $sql = "UPDATE `order` SET status_order='Belum Selesai' WHERE id_order='$id_order_get'";
+                $query = mysqli_query($conn, $sql);
+            } else {
+                $sql = "UPDATE `order` SET status_order='Menunggu Pembayaran' WHERE id_order='$id_order_get'";
+                $query = mysqli_query($conn, $sql);
+            }
+
             echo "
                 <script>
                     window.location.href='detail-order.php?id=$id_order_get';

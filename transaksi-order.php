@@ -43,6 +43,7 @@
                         <tbody>
                             <?php foreach ($order as $row) : 
                             if($row["status_order"]=='Belum Selesai') $status='danger';
+                            else if($row["status_order"]=='Menunggu Pembayaran') $status='warning';  
                             else if($row["status_order"]=='Selesai') $status='primary';  
                             ?>
                         <tr>

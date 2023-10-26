@@ -32,6 +32,9 @@
                         $sql = "INSERT INTO detail_order VALUES (NULL , $id_order, $id_menu, $jumlah, 'Belum Selesai' )";
                         $query = mysqli_query($conn, $sql);
 
+                        $sql = "UPDATE `order` SET status_order='Belum Selesai' WHERE id_order='$id_order'";
+                        $query = mysqli_query($conn, $sql);
+
                         $sql = "SELECT * FROM `detail_order` do JOIN `menu` m ON do.id_menu=m.id_menu WHERE do.id_order='$id_order'";
                         $detail = mysqli_query($conn, $sql);
 
