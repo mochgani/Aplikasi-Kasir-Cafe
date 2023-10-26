@@ -150,11 +150,19 @@
                                 </tr>
                             </tfoot>
                         </table>
-
+                        
+                        <?php
+                        $sql = "SELECT * FROM `detail_order` WHERE id_order='$id' and status_detail_order='Belum Selesai'";
+                        $detail = mysqli_query($conn, $sql);
+            
+                        $cek = mysqli_num_rows($detail);
+                        if($cek==0){
+                        ?>
                         <form method="post" action="transaksi-order.php">
                             <input type="hidden" name="id_order" value="<?=$id?>">
                             <input type="submit" name='simpan' value="Bayar" class="w-100 btn btn-lg btn-primary">
                         </form>
+                        <?php } ?>
                     
 
                 </div>
