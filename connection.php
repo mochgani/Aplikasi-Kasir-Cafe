@@ -1,7 +1,7 @@
 <?php 
 $host = "localhost";
 $username = "root";
-$password = "root";
+$password = "";
 $database = "db_cafe";
 $conn = new mysqli($host, $username, $password, $database);
 

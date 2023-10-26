@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 18, 2023 at 03:25 AM
+-- Generation Time: Oct 26, 2023 at 07:01 AM
 -- Server version: 5.7.34
 -- PHP Version: 5.6.40
 
@@ -19,6 +19,45 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_cafe`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `detail_order`
+--
+
+CREATE TABLE `detail_order` (
+  `id_detail_order` int(11) NOT NULL,
+  `id_order` int(11) NOT NULL,
+  `id_menu` int(11) NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `status_detail_order` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `detail_order`
+--
+
+INSERT INTO `detail_order` (`id_detail_order`, `id_order`, `id_menu`, `jumlah`, `status_detail_order`) VALUES
+(4, 2, 1, 3, 'Selesai'),
+(5, 2, 2, 1, 'Belum Selesai'),
+(6, 2, 4, 5, 'Belum Selesai'),
+(7, 2, 4, 1, 'Selesai'),
+(10, 2, 4, 5, 'Belum Selesai');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `detail_order_temp`
+--
+
+CREATE TABLE `detail_order_temp` (
+  `id_detail_order_temp` int(11) NOT NULL,
+  `tanggal` date NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `id_menu` int(11) NOT NULL,
+  `jumlah` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -62,7 +101,45 @@ CREATE TABLE `menu` (
 INSERT INTO `menu` (`id_menu`, `nama_menu`, `harga_menu`, `id_kategori`, `foto_menu`, `status_menu`) VALUES
 (1, 'Nasi Goreng', 15000, 1, '-', 'Tersedia'),
 (2, 'Jus Alpukat', 10000, 2, '-', 'Tersedia'),
-(4, 'Jus Jeruk', 7000, 2, '-', 'Tersedia');
+(4, 'Jus Jeruk', 7000, 2, '-', 'Tersedia'),
+(5, 'Mie Goreng', 17000, 1, '-', 'Tersedia');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order`
+--
+
+CREATE TABLE `order` (
+  `id_order` int(11) NOT NULL,
+  `no_meja` varchar(30) NOT NULL,
+  `tanggal` datetime NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `id_pelanggan` int(11) NOT NULL,
+  `total` int(11) NOT NULL,
+  `status_order` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `order`
+--
+
+INSERT INTO `order` (`id_order`, `no_meja`, `tanggal`, `id_user`, `id_pelanggan`, `total`, `status_order`) VALUES
+(2, '7', '2023-10-26 10:33:23', 3, 3, 132000, 'Belum Selesai');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_temp`
+--
+
+CREATE TABLE `order_temp` (
+  `id_order_temp` int(11) NOT NULL,
+  `no_meja` varchar(30) NOT NULL,
+  `tanggal` date NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `id_pelanggan` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -108,7 +185,8 @@ CREATE TABLE `role` (
 INSERT INTO `role` (`id_role`, `nama_role`) VALUES
 (1, 'Admin'),
 (2, 'Manager'),
-(3, 'Kasir');
+(3, 'Kasir'),
+(10, 'Bos Besar Pisan');
 
 -- --------------------------------------------------------
 
@@ -140,6 +218,18 @@ INSERT INTO `user` (`id_user`, `id_role`, `username`, `password`, `nama_user`) V
 --
 
 --
+-- Indexes for table `detail_order`
+--
+ALTER TABLE `detail_order`
+  ADD PRIMARY KEY (`id_detail_order`);
+
+--
+-- Indexes for table `detail_order_temp`
+--
+ALTER TABLE `detail_order_temp`
+  ADD PRIMARY KEY (`id_detail_order_temp`);
+
+--
 -- Indexes for table `kategori`
 --
 ALTER TABLE `kategori`
@@ -150,6 +240,18 @@ ALTER TABLE `kategori`
 --
 ALTER TABLE `menu`
   ADD PRIMARY KEY (`id_menu`);
+
+--
+-- Indexes for table `order`
+--
+ALTER TABLE `order`
+  ADD PRIMARY KEY (`id_order`);
+
+--
+-- Indexes for table `order_temp`
+--
+ALTER TABLE `order_temp`
+  ADD PRIMARY KEY (`id_order_temp`);
 
 --
 -- Indexes for table `pelanggan`
@@ -174,6 +276,18 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `detail_order`
+--
+ALTER TABLE `detail_order`
+  MODIFY `id_detail_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `detail_order_temp`
+--
+ALTER TABLE `detail_order_temp`
+  MODIFY `id_detail_order_temp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
@@ -183,7 +297,19 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `order`
+--
+ALTER TABLE `order`
+  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `order_temp`
+--
+ALTER TABLE `order_temp`
+  MODIFY `id_order_temp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `pelanggan`
@@ -195,7 +321,7 @@ ALTER TABLE `pelanggan`
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-  MODIFY `id_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `user`

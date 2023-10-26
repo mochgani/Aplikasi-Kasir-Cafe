@@ -15,7 +15,7 @@
 	if ($cek > 0) {
 		$login = mysqli_fetch_array($data);
 
-		$_SESSION['id_user'] = $login['id'];
+		$_SESSION['id_user'] = $login['id_user'];
 		$_SESSION['username'] = $username;
 		$_SESSION['id_role'] = $login['id_role'];
 		$_SESSION['nama_user'] = $login['nama_user'];

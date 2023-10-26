@@ -75,7 +75,7 @@ function active($currect_page){
 
     <?php if($_SESSION['id_role']==1 || $_SESSION['id_role']==3){ ?>
     <li>
-        <a href="#" class="nav-link text-white <?php active('order'); ?>">
+        <a href="transaksi-order.php" class="nav-link text-white <?php active('transaksi-order,tambah-order,detail-order'); ?>">
         <i class="bi-cart-plus-fill me-2"></i> 
         Order
         </a>

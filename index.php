@@ -10,7 +10,7 @@
 <body>
 	<?php 
 	session_start();
-	if ($_SESSION['status'] == "login") {
+	if (isset($_SESSION['status']) && $_SESSION['status'] == "login") {
 		echo "<script>window.location.href='home.php'</script>";
 	}
 
