@@ -21,11 +21,57 @@
                     <a href="tambah-menu.php" class="btn btn-primary"><i class="bi-bag-plus-fill me-1"></i> Tambah Data Menu</a><br>
 
                     <?php
-                        $sql = "SELECT * FROM menu m JOIN kategori k ON m.id_kategori=k.id_kategori";
+
+                        if(isset($_POST['cari'])){
+                            $search = $_POST['search'];
+                            $id_kategori = $_POST['id_kategori'];
+
+                            if($id_kategori != ""){
+                                $sql = "SELECT * FROM menu m 
+                                                JOIN kategori k 
+                                                ON m.id_kategori=k.id_kategori
+                                                WHERE m.nama_menu LIKE '%$search%'
+                                                AND k.id_kategori=$id_kategori";
+                            } else {
+                                $sql = "SELECT * FROM menu m 
+                                                JOIN kategori k 
+                                                ON m.id_kategori=k.id_kategori
+                                                WHERE m.nama_menu LIKE '%$search%'";
+                            }
+
+                            
+                        } else {
+                            $sql = "SELECT * FROM menu m 
+                                            JOIN kategori k 
+                                            ON m.id_kategori=k.id_kategori";
+                        }
+
                         $menu = mysqli_query($conn, $sql);
                     ?>
 
                     <br>
+                    
+                    <form method='POST'>
+                    Search 
+                    <input type="text" name="search">
+                    
+                    <?php
+                        $sql = "SELECT * FROM kategori";
+                        $kategori = mysqli_query($conn, $sql);
+                    ?>
+                    
+                    <select name="id_kategori" id="form-kategori">
+                        <option value="">ALL</option>
+                        <?php
+                        foreach ($kategori as $kat) {
+                            echo "<option value='".$kat['id_kategori']."'>"
+                                    .$kat['nama_kategori']."</option>";
+                        }
+                        ?>
+                    </select>
+
+                    <input type="submit" name="cari" value="Cari"><br>
+                    </form>
 
                     <table class="table table-bordered table-striped table-hover" id="data-menu"> 
                         <thead>
@@ -68,9 +114,9 @@
         </div>
     </main>
 
-    <script>
+    <!-- <script>
         new DataTable('#data-menu');
-    </script>
+    </script> -->
 
 </body>
 </html>
